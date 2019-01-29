@@ -165,7 +165,7 @@ Cart::destroy();
 
 ### Cart::total()
 
-The `total()` method can be used to get the calculated total of all items in the cart, given there price and quantity.
+The `total()` method can be used to get the calculated total of all items in the cart, given there price and quantity. Includes any additional costs too.
 
 ```php
 Cart::total();
