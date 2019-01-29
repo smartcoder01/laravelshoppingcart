@@ -439,21 +439,21 @@ Cart::setCost('somethingelse', 1.11);
    			<td>Tax</td>
    			<td><?php echo Cart::tax(); ?></td>
    		</tr>
-        <tr>
-            <td colspan="2">&nbsp;</td>
-            <td>Transaction cost</td>
-            <td><?php echo Cart::getCost(\Gloudemans\Shoppingcart\Cart::COST_TRANSACTION); ?></td>
-        </tr>
-        <tr>
-            <td colspan="2">&nbsp;</td>
-            <td>Transaction cost</td>
-            <td><?php echo Cart::getCost(\Gloudemans\Shoppingcart\Cart::COST_SHIPPING); ?></td>
-        </tr>
-        <tr>
-            <td colspan="2">&nbsp;</td>
-            <td>Transaction cost</td>
-            <td><?php echo Cart::getCost('somethingelse'); ?></td>
-        </tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+			<td>Transaction cost</td>
+			<td><?php echo Cart::getCost(\Gloudemans\Shoppingcart\Cart::COST_TRANSACTION); ?></td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+			<td>Transaction cost</td>
+			<td><?php echo Cart::getCost(\Gloudemans\Shoppingcart\Cart::COST_SHIPPING); ?></td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+			<td>Transaction cost</td>
+			<td><?php echo Cart::getCost('somethingelse'); ?></td>
+		</tr>
    		<tr>
    			<td colspan="2">&nbsp;</td>
    			<td>Total</td>
