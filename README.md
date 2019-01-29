@@ -394,6 +394,11 @@ Below is a little example of how to list the cart content in a table:
 Cart::add('192ao12', 'Product 1', 1, 9.99);
 Cart::add('1239ad0', 'Product 2', 2, 5.95, ['size' => 'large']);
 
+// Set an additional cost (on the same page where you display your cart content)
+Cart::setCost(Cart::COST_TRANSACTION, 0.10);
+Cart::setCost(Cart::COST_SHIPPING, 5.00);
+Cart::setCost('somethingelse', 1.11);
+
 // Display the content in a View.
 <table>
    	<thead>
@@ -434,6 +439,21 @@ Cart::add('1239ad0', 'Product 2', 2, 5.95, ['size' => 'large']);
    			<td>Tax</td>
    			<td><?php echo Cart::tax(); ?></td>
    		</tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td>Transaction cost</td>
+            <td><?php echo Cart::getCost(\Gloudemans\Shoppingcart\Cart::COST_TRANSACTION); ?></td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td>Transaction cost</td>
+            <td><?php echo Cart::getCost(\Gloudemans\Shoppingcart\Cart::COST_SHIPPING); ?></td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td>Transaction cost</td>
+            <td><?php echo Cart::getCost('somethingelse'); ?></td>
+        </tr>
    		<tr>
    			<td colspan="2">&nbsp;</td>
    			<td>Total</td>

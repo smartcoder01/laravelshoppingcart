@@ -16,6 +16,9 @@ class Cart
 {
     const DEFAULT_INSTANCE = 'default';
 
+    const COST_SHIPPING = 'shipping';
+    const COST_TRANSACTION = 'transaction';
+
     /**
      * Instance of the session manager.
      *
@@ -37,6 +40,8 @@ class Cart
      */
     private $instance;
 
+    private $extraCosts;
+
     /**
      * Cart constructor.
      *
@@ -47,6 +52,7 @@ class Cart
     {
         $this->session = $session;
         $this->events = $events;
+        $this->extraCosts = array();
 
         $this->instance(self::DEFAULT_INSTANCE);
     }
@@ -109,6 +115,30 @@ class Cart
         $this->session->put($this->instance, $content);
 
         return $cartItem;
+    }
+
+    /**
+     * Sets/adds an additional cost on the cart.
+     *
+     * @param $type
+     * @param $price
+     * @todo add in session
+     */
+    public function setCost($name, $price)
+    {
+        $this->extraCosts[$name] = $price;
+    }
+
+    /**
+     * @param $name
+     * @param null $decimals
+     * @param null $decimalPoint
+     * @param null $thousandSeperator
+     * @return string
+     */
+    public function getCost($name, $decimals = null, $decimalPoint = null, $thousandSeperator = null)
+    {
+        return $this->numberFormat($this->extraCosts[$name] ?? 0, $decimals, $decimalPoint, $thousandSeperator);
     }
 
     /**
@@ -241,6 +271,10 @@ class Cart
         $total = $content->reduce(function ($total, CartItem $cartItem) {
             return $total + ($cartItem->qty * $cartItem->priceTax);
         }, 0);
+
+        foreach ($this->extraCosts as $cost) {
+            $total += $cost;
+        }
 
         return $this->numberFormat($total, $decimals, $decimalPoint, $thousandSeperator);
     }
