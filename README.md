@@ -13,9 +13,9 @@ Install the package through [Composer](http://getcomposer.org/).
 
 Run the Composer require command from the Terminal:
 
-    composer require gloudemans/shoppingcart
+    composer require michaelbelgium/shoppingcart
     
-If you're using Laravel 5.5, this is all there is to do. 
+### Laravel <= 5.4
 
 Should you still be on version 5.4 of Laravel, the final steps for you are to add the service provider of the package and alias the package. To do this open your `config/app.php` file.
 
@@ -246,6 +246,24 @@ As you can see the Closure will receive two parameters. The first is the CartIte
 **The method will return a Collection containing all CartItems that where found**
 
 This way of searching gives you total control over the search process and gives you the ability to create very precise and specific searches.
+
+### Cart::addCost()
+
+If you want to add additional costs to the cart you can use the `addCost()` method. The method accepts a cost name and the price of the cost. This can be used for eg shipping or transaction costs.
+
+```php
+Cart::addCost($name, $price)
+```
+
+**Add this method before summarizing the whole cart. The costs are not saved in the session (yet).**
+
+### Cart::getCost()
+
+Get an addition cost you added by `addCost()`. Accepts the cost name. Returns the formatted price of the cost.
+
+```php
+Cart::getCost($name, $decimals, $decimalPoint, $thousandSeperator)
+```
 
 ## Collections
 
