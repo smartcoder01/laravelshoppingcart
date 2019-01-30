@@ -130,6 +130,8 @@ class Cart
     }
 
     /**
+     * Gets an additional cost by name
+     * 
      * @param $name
      * @param null $decimals
      * @param null $decimalPoint
@@ -138,7 +140,12 @@ class Cart
      */
     public function getCost($name, $decimals = null, $decimalPoint = null, $thousandSeperator = null)
     {
-        return $this->numberFormat($this->extraCosts[$name] ?? 0, $decimals, $decimalPoint, $thousandSeperator);
+        $cost = 0;
+
+        if(isset($this->extraCosts[$name]))
+            $cost = $this->extraCosts[$name];
+
+        return $this->numberFormat($cost, $decimals, $decimalPoint, $thousandSeperator);
     }
 
     /**
