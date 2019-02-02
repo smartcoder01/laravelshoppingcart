@@ -413,9 +413,9 @@ Cart::add('192ao12', 'Product 1', 1, 9.99);
 Cart::add('1239ad0', 'Product 2', 2, 5.95, ['size' => 'large']);
 
 // Set an additional cost (on the same page where you display your cart content)
-Cart::setCost(Cart::COST_TRANSACTION, 0.10);
-Cart::setCost(Cart::COST_SHIPPING, 5.00);
-Cart::setCost('somethingelse', 1.11);
+Cart::addCost(Cart::COST_TRANSACTION, 0.10);
+Cart::addCost(Cart::COST_SHIPPING, 5.00);
+Cart::addCost('somethingelse', 1.11);
 
 // Display the content in a View.
 <table>

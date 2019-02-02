@@ -129,7 +129,7 @@ class Cart
      * @param $price
      * @todo add in session
      */
-    public function setCost($name, $price)
+    public function addCost($name, $price)
     {
         $oldCost = $this->extraCosts->pull($name, 0);
 
