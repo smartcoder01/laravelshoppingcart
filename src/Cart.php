@@ -40,6 +40,11 @@ class Cart
      */
     private $instance;
 
+    /**
+     * Holds the extra additional costs on the cart
+     *
+     * @var Collection
+     */
     private $extraCosts;
 
     /**
@@ -52,7 +57,7 @@ class Cart
     {
         $this->session = $session;
         $this->events = $events;
-        $this->extraCosts = array();
+        $this->extraCosts = new Collection();
 
         $this->instance(self::DEFAULT_INSTANCE);
     }
@@ -126,24 +131,23 @@ class Cart
      */
     public function setCost($name, $price)
     {
-        $this->extraCosts[$name] = $price;
+        $oldCost = $this->extraCosts->pull($name, 0);
+
+        $this->extraCosts->put($name, $price + $oldCost);
     }
 
     /**
      * Gets an additional cost by name
      * 
      * @param $name
-     * @param null $decimals
-     * @param null $decimalPoint
-     * @param null $thousandSeperator
+     * @param int|null $decimals
+     * @param string|null $decimalPoint
+     * @param string|null $thousandSeperator
      * @return string
      */
     public function getCost($name, $decimals = null, $decimalPoint = null, $thousandSeperator = null)
     {
-        $cost = 0;
-
-        if(isset($this->extraCosts[$name]))
-            $cost = $this->extraCosts[$name];
+        $cost = $this->extraCosts->get($name, 0);
 
         return $this->numberFormat($cost, $decimals, $decimalPoint, $thousandSeperator);
     }
@@ -240,12 +244,12 @@ class Cart
     /**
      * Get the content of the cart.
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function content()
     {
         if (is_null($this->session->get($this->instance))) {
-            return new Collection([]);
+            return new Collection();
         }
 
         return $this->session->get($this->instance);
@@ -279,9 +283,11 @@ class Cart
             return $total + ($cartItem->qty * $cartItem->priceTax);
         }, 0);
 
-        foreach ($this->extraCosts as $cost) {
-            $total += $cost;
-        }
+        $totalCost = $this->extraCosts->reduce(function ($total, $cost) {
+            return $total + $cost;
+        }, 0);
+
+        $total += $totalCost;
 
         return $this->numberFormat($total, $decimals, $decimalPoint, $thousandSeperator);
     }
@@ -328,7 +334,7 @@ class Cart
      * Search the cart content for a cart item matching the given search closure.
      *
      * @param \Closure $search
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function search(Closure $search)
     {
@@ -467,7 +473,7 @@ class Cart
     /**
      * Get the carts content, if there is no cart content set yet, return a new empty Collection
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     protected function getContent()
     {
