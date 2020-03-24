@@ -1,9 +1,9 @@
 ## LaravelShoppingcart
-[![Build Status](https://travis-ci.com/MichaelBelgium/LaravelShoppingcart.svg?branch=master)](https://travis-ci.com/MichaelBelgium/LaravelShoppingcart)
-[![Total Downloads](https://poser.pugx.org/michaelbelgium/shoppingcart/downloads.png)](https://packagist.org/packages/michaelbelgium/shoppingcart)
-[![Latest Stable Version](https://poser.pugx.org/michaelbelgium/shoppingcart/v/stable)](https://packagist.org/packages/michaelbelgium/shoppingcart)
-[![Latest Unstable Version](https://poser.pugx.org/michaelbelgium/shoppingcart/v/unstable)](https://packagist.org/packages/michaelbelgium/shoppingcart)
-[![License](https://poser.pugx.org/michaelbelgium/shoppingcart/license)](https://packagist.org/packages/michaelbelgium/shoppingcart)
+[![Build Status](https://travis-ci.com/olimortimer/LaravelShoppingcart.svg?branch=master)](https://travis-ci.com/olimortimer/LaravelShoppingcart)
+[![Total Downloads](https://poser.pugx.org/olimortimer/laravelshoppingcart/downloads.png)](https://packagist.org/packages/olimortimer/laravelshoppingcart)
+[![Latest Stable Version](https://poser.pugx.org/olimortimer/laravelshoppingcart/v/stable)](https://packagist.org/packages/olimortimer/laravelshoppingcart)
+[![Latest Unstable Version](https://poser.pugx.org/olimortimer/laravelshoppingcart/v/unstable)](https://packagist.org/packages/olimortimer/laravelshoppingcart)
+[![License](https://poser.pugx.org/olimortimer/laravelshoppingcart/license)](https://packagist.org/packages/olimortimer/laravelshoppingcart)
 
 A simple shoppingcart implementation for Laravel.
 
